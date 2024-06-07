@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.abc{
+			background: linear-gradient(#0000ff -4%,#ff6666 97%);
+			width: 400px;
+			height: 400px;
+			box-sizing: border-box;
+			box-shadow: 0px 0px 5px 5px;
+			border-radius: 2px solid black;
+		}
+		.button{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<table class="abc" border=3 align="center" >
+		<tr>
+			<td colspan=4><input type="text" name="" id="text"></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="<" onclick="delete1()" id="button"></td>
+			<td><input type="button" value="c" onclick="clear1()" id="button"></td>
+			<td><input type="button" value="<" onclick="delete1()" id="button"></td>
+			<td><input type="button" value="/" onclick="insert('/')" id="button"></td>
+		</tr>
+		<tr>
+			<td><input type="button"value="1" onclick="insert(1)" id="button"></td>
+			<td><input type="button"value="2" onclick="insert(2)" id="button"></td>
+			<td><input type="button"value="3" onclick="insert(3)" id="button"></td>
+			<td><input type="button" value="*" onclick="insert('*')" id="button"></td>
+		</tr>
+		<tr>
+			<td><input type="button"value="4" onclick="insert(4)" id="button"></td>
+			<td><input type="button"value="5" onclick="insert(5)" id="button"></td>
+			<td><input type="button"value="6" onclick="insert(6)" id="button"></td>
+			<td><input type="button" value="-" onclick="insert('-')" id="button"></td>
+		</tr>
+		<tr>
+			<td><input type="button"value="7" onclick="insert(7)" id="button"></td>
+			<td><input type="button"value="8" onclick="insert(8)" id="button"></td>
+			<td><input type="button"value="9" onclick="insert(9)" id="button"></td>
+			<td><input type="button" value="+" onclick="insert('+')" id="button"></td>
+		</tr>
+		<tr>
+			<td><input type="button"value="+/-" onclick="change('+/-')" id="button"></td>
+			<td><input type="button"value="0" onclick="insert('0')" id="button"></td>
+			<td><input type="button"value="." onclick="insert('.')" id="button"></td>
+			<td><input type="button"value="=" onclick="equal('=')" id="button"></td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		var c;
+		function insert(n){
+			document.getElementById("text").value=document.getElementById("text").value+n;
+			console.log()
+		}
+		function equal(){
+			document.getElementById("text").value=eval(document.getElementById("text").value);
+		}
+		function change(){
+			document.getElementById("text").value=document.getElementById("text").value*(-1);
+		}
+		function delete1(){
+			document.getElementById("text").value=text.value.substring(0,text.value.length-1);
+		}
+		function clear1(){
+			document.getElementById("text").value=" ";
+		}
+	</script>
+</body>
+</html>

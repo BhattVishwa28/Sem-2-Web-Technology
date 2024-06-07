@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="button" value="Start Counter" onclick="startCounter()">
+	<h1 id="CounterName">Counter</h1>
+	<h1 id="Counter">10</h1>
+	<script type="text/javascript">
+		
+		var a = 10;
+		var c;
+
+		function startCounter(){
+			c=setInterval(printCounter,1000);
+		}
+		function stopCounter(){
+			clearInterval(c);
+		}
+		function printCounter(){
+			a--;
+			var temp=document.getElementById("Counter");
+			temp.innerHTML =a;
+			if(a==0){
+				stopCounter();
+			}		
+		}
+	</script>
+</body>
+</html>

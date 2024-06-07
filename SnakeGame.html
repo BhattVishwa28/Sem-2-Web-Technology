@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#snakeimg{
+			height: 250px;
+			width: 250px;
+			position: fixed;
+			top: 400px;
+			left: 300px;
+		}
+		#foodImg{
+			height: 50px;
+			width: 35px;
+			position: absolute;
+			top: 200px;
+			left: 400px;
+		}
+	</style>
+</head>
+<body onload="foodLocation()">
+	
+	<input type="button" value="right =>" onclick="goRight()">
+	<input type="button" value="<= left" onclick="goLeft()">
+	<input type="button" value="top ^" onclick="goTop()">
+	<input type="button" value="down v" onclick="goDown()">
+
+	<table>
+		<tr>
+			<td>Life: </td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>Score: </td>
+			<td>0</td>
+		</tr>
+	</table>
+	<img src="snakeright.webp" id="snakeimg">
+	<img src="food2.jpg" id="foodImg">
+
+	<div id="areaOfGame"></div>
+
+	<script type="text/javascript">
+
+		var image=document.getElementById('snakeimg');
+		var food=document.getElementById('foodImg');
+		var life=document.getElementById('lifeCount')
+		var lifeCount=3,scoreCount=0;
+		var r,d,u,l,foodTop,foodLeft,t1,t2;
+		var left=500;
+		var top=200;
+		var flagL=true,flagR=true,flagT=true,flagD=true;
+
+		function startGoingLeft(){
+			clearInterval(r);
+			clearInterval(d);
+			clearInterval(t);
+			if(flagL){
+				flagL=false;
+				flagR=true;
+				flagD=true;
+				flagT=true;
+				l=setInterval(goLeft,10);
+			}
+		}
+		function goLeft(){
+			checkMatchingPosition();
+			left--;
+			if(left<=0){
+				checkBoundary();
+			}
+			image.style.left=left+"px";
+		}
+		function startGoingRight(){
+			clearInterval(l);
+			clearInterval(t);
+			clearInterval(d);
+			if(flagR){
+				flagR=false;
+				flagD=true;
+				flagT=true;
+				flagL=true;
+				r=setInterval(goRight,10);
+			}
+		}
+
+		function goRight(){
+			checkMatchingPosition();
+			left++;
+			if(left>=screen.availWidth-130){
+				checkBoundary();
+			}
+			image.style.right=right+"px";
+		}
+		function startGoingTop(){
+			clearInterval(d);
+			clearInterval(l);
+			clearInterval(r);
+			if(flagT){
+				flagT=false;
+				flagD=true;
+				flagR=true;
+				flagL=true;
+				t=setInterval(goTop,10);
+			}
+		}
+		function goTop(){
+			checkMatchingPosition();
+			t--;
+			if(t<130){
+				checkBoundary();
+			}
+			image.style.top=top+"px";
+		}
+		function startGoingDown(){
+			clearInterval(u);
+			clearInterval(l);
+			clearInterval(r);
+			if(flagD){
+				flagD=false;
+				flagT=true;
+				flagR=true;
+				flagL=true;
+				d=setInterval(goDown,10);
+			}
+		}
+		function goDown(){
+			checkMatchingPosition();
+			t++;
+			if(t>screen.availHeight-200){
+				checkBoundary();
+			}
+			image.style.down=down+"px";
+		}
+		function moveControl(event){
+			if(event.keyCode==37){
+				startGoingLeft();
+			}
+			if(event.keyCode==38){
+				startGoingTop();
+			}
+			if(event.keyCode==39){
+				startGoingRight();
+			}
+			if(event.keyCode==40){
+				startGoingDown();
+			}
+		}
+		function foodLocation()
+		{
+			food = document.getElementById('foodImg');
+			foodTop = Math.random()*screen.availHeight-150;
+			foodLeft = Math.random()*screen.availWidth-100;
+			if(foodLeft<screen.availWidth && foodTop>150){
+				if(foodLeft>0 && foodTop<screen.availHeight && foodLeft<screen.availWidth && foodTop>0)
+				{
+					food.style.top=foodTop+"px";
+					food.style.left=foodLeft+"px";
+				}
+				else{
+					foodLocation();
+				}
+			}
+			else{
+				foodLocation();
+			}
+
+		}
+		function checkMatchingPosition(){
+			var t1 = parseInt(foodTop);
+			var l1 = parseInt(foodLeft);
+
+		}
+		function checkBoundary(){
+			left=500;
+			t=200;
+			lifeCount--;
+
+			if(lifeCount<=0){
+				document.write("Game Over");
+				clearInterval(r);
+				clearInterval(u);
+				clearInterval(d);
+				clearInterval(l);
+			}
+			life.innerHTML=lifeCount
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="text" placeholder="Enter name" id="name"><br/>
+	<input type="password" placeholder="Enter password" id="pswd">
+	<input type="button" value="show" onclick="togglepass()" id="togglebutton"><br/>
+	<input type="button" value="login" onclick="login()">
+	<script type="text/javascript">
+		function login(){
+			var a = document.getElementById("name");
+			var b = document.getElementById("pswd");
+
+			if(a.value=="Vishwa" && b.value=="Bhatt"){
+				document.write("valid user");
+			}
+			else{
+				document.write("Enter valid id/password");
+			}
+		}
+		function togglepass(){
+			var c = document.getElementById("pswd");
+			var d = document.getElementById("togglebutton");
+
+			if(c.type=="text"){
+				c.type="password";
+				d.value="Show";
+			}
+			else{
+				c.type="text";
+				d.value="Hide";
+			}
+		}
+	</script>
+</body>
+</html>
